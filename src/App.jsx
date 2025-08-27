@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import amanImg from './aman.jpg';
 import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Menu, X, Code, Briefcase, User, MessageSquare, MapPin, Calendar, Award } from 'lucide-react';
 
 const App = () => {
@@ -30,6 +31,24 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Load EmailJS script on component mount
+  useEffect(() => {
+    const loadEmailJS = () => {
+      if (!window.emailjs) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+        script.async = true;
+        script.onload = () => {
+          // Initialize EmailJS with your public key
+          window.emailjs.init("EBsqYTnXDwYKD7Jbh");
+        };
+        document.head.appendChild(script);
+      }
+    };
+
+    loadEmailJS();
+  }, []);
+
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ 
       behavior: 'smooth',
@@ -43,23 +62,26 @@ const App = () => {
     setIsSending(true);
 
     try {
-      // Load EmailJS library dynamically
-      const emailjs = await import('https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js');
-      
-      // Initialize EmailJS with your public key
-      emailjs.init("EBsqYTnXDwYKD7Jbh"); 
-      
-      await emailjs.sendForm(
-        'service_rcnfbcb', 
-        'template_56o2f3l', 
-        formRef.current
+      // Check if EmailJS is loaded
+      if (!window.emailjs) {
+        throw new Error('EmailJS not loaded. Please try again.');
+      }
+
+      // Send email using the form reference
+      const result = await window.emailjs.sendForm(
+        'service_rcnfbcb',   // Your Service ID
+        'template_56o2f3l',  // Your Template ID
+        formRef.current,     // The form reference
+        'EBsqYTnXDwYKD7Jbh'  // Your Public Key
       );
-      
-      alert('✅ Message sent successfully! I will get back to you soon.');
+
+      console.log('Email sent successfully:', result);
+      alert('Message sent successfully! I will get back to you soon.');
       formRef.current.reset();
+      
     } catch (error) {
-      console.error('EmailJS Error:', error);
-      alert('❌ Failed to send message. Please try emailing me directly at amankumar6936@gmail.com');
+      console.error('Failed to send email:', error);
+      alert('Failed to send message. Please try emailing me directly at amankumar005562@gmail.com');
     } finally {
       setIsSending(false);
     }
@@ -70,23 +92,15 @@ const App = () => {
       title: "E-commerce Platform",
       description: "Full-stack web application built with React, Node.js, and MongoDB. Features include user authentication, payment integration, and real-time inventory management.",
       tech: ["React", "Node.js", "MongoDB", "Stripe API"],
-      github: "#",
+      github: "https://github.com/AKDev32/E-Commerce-Website",
       demo: "#",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
-    },
-    {
-      title: "Task Management App",
-      description: "Collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      tech: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-      github: "#",
-      demo: "#",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop"
     },
     {
       title: "Data Visualization Dashboard",
       description: "Interactive dashboard for analyzing business metrics with dynamic charts, filters, and real-time data updates.",
       tech: ["React", "D3.js", "Python", "FastAPI"],
-      github: "#",
+      github: "https://github.com/AKDev32/data-visualizer-dashboard",
       demo: "#",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
     },
@@ -96,7 +110,15 @@ const App = () => {
       tech: ["Java", "Java Swing", "Multithreading"],
       github: "https://github.com/AKDev32/Algorithm-Visualizer",
       demo: "#",
-      image: "https://algorithmvisualiser.netlify.app/images/sort1.jpg"
+      image: "https://panthema.net/2013/sound-of-sorting/thumb.gif"
+    },
+    {
+      title: "Hangman Game",
+      description: "Collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
+      tech: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
+      github: "https://github.com/AKDev32/Hangman-Game",
+      demo: "#",
+      image: "https://easyshiksha.com/online_courses/assets/games/hangman/1.png"
     }
   ];
 
@@ -130,10 +152,10 @@ const App = () => {
 
   const experiences = [
     {
-      title: "Contributor",
-      company: "Open Source",
+      title: "Open Source-Contributor",
+      company: "GirlScript Summer of Code(GSSoC)",
       location: "Delhi, IND",
-      period: "2025 - Present",
+      period: "July, 2025 - Present",
       type: "Part-time",
       description: "Lead development of scalable web applications using MERN stack. Mentored junior developers and implemented best practices for code quality and performance optimization.",
       achievements: [
@@ -149,8 +171,8 @@ const App = () => {
     {
       title: "MERN Developer",
       company: "Excellence Technology",
-      location: "On-site",
-      period: "2025 - 2025",
+      location: "Chandhigarh, PB",
+      period: "June, 2025 - August, 2025",
       type: "Full-time",
       description: "Developed and maintained multiple client projects using modern web technologies. Collaborated with design team to create responsive and user-friendly interfaces.",
       achievements: [
@@ -158,7 +180,7 @@ const App = () => {
         "Designed and integrated RESTful APIs with JWT-based authentication",
         "Collaborated in an agile development environment, participating in sprints and code reviews",
         "Utilized Git and GitHub for version control and efficient team workflows",
-        "Delivered production-ready features that improved application performace and scalability",
+        "Delivered production-ready features that improved application performance and scalability",
         "Gained hands-on experience in professional software development practices"
       ],
       technologies: ["React", "Node.js", "MongoDB", "Express.js", "Git"]
@@ -235,7 +257,7 @@ const App = () => {
         <div className="text-center z-10 px-4">
           <div className="mb-8">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+              src={amanImg}
               alt="Profile"
               className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400 shadow-lg"
             />
@@ -366,10 +388,10 @@ const App = () => {
                       <div className="text-3xl font-bold text-purple-400 mb-2">Fresher</div>
                       <div className="text-sm text-gray-400">Years Experience</div>
                     </div>
-                    <div className="text-center">
+                    {/* <div className="text-center">
                       <div className="text-3xl font-bold text-pink-400 mb-2">30+</div>
                       <div className="text-sm text-gray-400">Happy Clients</div>
-                    </div>
+                    </div> */}
                     <div className="text-center">
                       <div className="text-3xl font-bold text-green-400 mb-2">24/7</div>
                       <div className="text-sm text-gray-400">Support</div>
@@ -598,7 +620,7 @@ const App = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input
                   type="email"
-                  name="reply_to"
+                  name="from_email"
                   required
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors duration-200 text-white"
                   placeholder="your.email@example.com"
@@ -611,25 +633,35 @@ const App = () => {
                   name="subject"
                   required
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors duration-200 text-white"
-                  placeholder="Project Discussion"
+                  placeholder="What's this about?"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                 <textarea
-                  rows={4}
                   name="message"
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors duration-200 resize-none text-white"
+                  rows="5"
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors duration-200 text-white resize-none"
                   placeholder="Tell me about your project..."
-                />
+                ></textarea>
               </div>
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSending ? "Sending..." : "Send Message"}
+                {isSending ? (
+                  <div className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           </div>
@@ -637,10 +669,67 @@ const App = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-gray-800">
+      <footer className="bg-gray-800 border-t border-gray-700 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-gray-400">
-            <p>&copy; 2025 Aman Kumar. All rights reserved.</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
+                Aman Kumar
+              </div>
+              <p className="text-gray-400 leading-relaxed">
+                Passionate full-stack developer creating innovative web solutions 
+                with the MERN stack. Let's build something amazing together.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <div className="space-y-2">
+                {['Home', 'About', 'Experience', 'Projects', 'Contact'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className="block text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Connect</h4>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://github.com/AKDev32" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-500 transition-all duration-200"
+                >
+                  <Github size={20} />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/aman32" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-500 transition-all duration-200"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a 
+                  href="mailto:amankumar005562@gmail.com"
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-500 transition-all duration-200"
+                >
+                  <Mail size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
+              © 2025 Aman Kumar. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
