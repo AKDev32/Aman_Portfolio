@@ -91,7 +91,7 @@ const App = () => {
     {
       title: "E-commerce Platform",
       description: "Full-stack web application built with React, Node.js, and MongoDB. Features include user authentication, payment integration, and real-time inventory management.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe API"],
+      tech: ["React", "Node.js", "MongoDB"],
       github: "https://github.com/AKDev32/E-Commerce-Website",
       demo: "#",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
@@ -99,7 +99,7 @@ const App = () => {
     {
       title: "Data Visualization Dashboard",
       description: "Interactive dashboard for analyzing business metrics with dynamic charts, filters, and real-time data updates.",
-      tech: ["React", "D3.js", "Python", "FastAPI"],
+      tech: ["React", "Node.js", "Express.js", "Rest API"],
       github: "https://github.com/AKDev32/data-visualizer-dashboard",
       demo: "#",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
@@ -114,8 +114,8 @@ const App = () => {
     },
     {
       title: "Hangman Game",
-      description: "Collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      tech: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
+      description: "The Hangman game is a classic word-guessing puzzle where players try to guess a hidden word by suggesting letters within a limited number of attempts. Each wrong guess adds a part to the hangman figure until the game is won or lost.",
+      tech: ["React", "TypeScript", "Tailwind CSS"],
       github: "https://github.com/AKDev32/Hangman-Game",
       demo: "#",
       image: "https://easyshiksha.com/online_courses/assets/games/hangman/1.png"
