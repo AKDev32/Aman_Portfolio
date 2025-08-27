@@ -126,27 +126,21 @@ const App = () => {
     programming: [
       { name: "Java", level: 90 },
       { name: "JavaScript", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "C++", level: 70 }
+      { name: "Python", level: 80 }
     ],
     frontend: [
       { name: "React", level: 90 },
-      { name: "Next.js", level: 85 },
       { name: "HTML/CSS", level: 95 },
       { name: "Tailwind CSS", level: 88 }
     ],
     backend: [
       { name: "Node.js", level: 88 },
       { name: "Express.js", level: 85 },
-      { name: "GraphQL", level: 72 },
       { name: "REST APIs", level: 90 }
     ],
     database : [
       { name: "MongoDB", level: 85 },
-      { name: "MySQL", level: 88 },
-      { name: "Postman", level: 75 },
-      { name: "vs-code", level: 90 },
-      { name: "Git", level: 80 }
+      { name: "MySQL", level: 88 }
     ]
   };
 
@@ -381,20 +375,28 @@ const App = () => {
                 <div className="h-full flex flex-col justify-center items-center text-center space-y-8">
                   <div className="grid grid-cols-2 gap-8 w-full">
                     <div className="text-center">
+                      <div className="text-3xl font-bold text-purple-400 mb-2">200+</div>
+                      <div className="text-sm text-gray-400">Problem-Solving(DSA)</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-pink-400 mb-2">5+</div>
+                      <div className="text-sm text-gray-400">Open Source Contributions</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-400 mb-2">1</div>
+                      <div className="text-sm text-gray-400">Hackathons/ Competitions</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-orange-400 mb-2">2</div>
+                      <div className="text-sm text-gray-400">Team Projects/ Collaboration</div>
+                    </div>
+                    <div className="text-center">
                       <div className="text-3xl font-bold text-blue-400 mb-2">10+</div>
                       <div className="text-sm text-gray-400">Projects Completed</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-400 mb-2">Fresher</div>
-                      <div className="text-sm text-gray-400">Years Experience</div>
-                    </div>
-                    {/* <div className="text-center">
-                      <div className="text-3xl font-bold text-pink-400 mb-2">30+</div>
-                      <div className="text-sm text-gray-400">Happy Clients</div>
-                    </div> */}
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-green-400 mb-2">24/7</div>
-                      <div className="text-sm text-gray-400">Support</div>
+                      <div className="text-3xl font-bold text-red-400 mb-2">3</div>
+                      <div className="text-sm text-gray-400">Technical Certifications</div>
                     </div>
                   </div>
                 </div>
