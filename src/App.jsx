@@ -398,6 +398,14 @@ const App = () => {
                       <div className="text-3xl font-bold text-red-400 mb-2">3</div>
                       <div className="text-sm text-gray-400">Technical Certifications</div>
                     </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text--400yellow mb-2">Fresher</div>
+                      <div className="text-sm text-gray-400">Years Experience</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-orange-400 mb-2">24/7</div>
+                      <div className="text-sm text-gray-400">Supports</div>
+                    </div>
                   </div>
                 </div>
               </div>
